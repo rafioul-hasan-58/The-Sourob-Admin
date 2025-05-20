@@ -31,7 +31,7 @@ const LoginForm = () => {
             const res = await loginUser(loginData);
             console.log(res);
             if (res.success) {
-                toast.success('User logged in');
+                toast.success('Admin logged in');
                 router.push('/dashboard/messages')
             } else {
                 toast.error(res.message);

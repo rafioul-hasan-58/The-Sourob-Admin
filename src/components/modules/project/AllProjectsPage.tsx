@@ -58,7 +58,19 @@ const AllProjectsPage = ({ data }: IAllProjects) => {
                     {
                         data?.map((project: IProject, idx) => (<TableRow className="bg-gray-50" key={idx}>
                             <TableCell className="font-medium">
-                                <Image className="border" src={project.images[0]} width={100} height={80} alt="image" />
+                                {project.images && project.images.length > 0 && project.images[0] ? (
+                                    <Image
+                                        className="border"
+                                        src={project.images[0]}
+                                        width={100}
+                                        height={80}
+                                        alt="image"
+                                    />
+                                ) : (
+                                    <div className="w-[100px] h-[80px] flex items-center justify-center bg-gray-200 text-gray-500 border rounded">
+                                        No Image
+                                    </div>
+                                )}
                             </TableCell>
                             <TableCell>{project.title}</TableCell>
                             <TableCell className="">

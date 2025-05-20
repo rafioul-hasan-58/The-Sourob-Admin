@@ -1,12 +1,12 @@
 'use client';
-import EditBlogForm from "@/components/modules/blog/EditBlogForm";
+import BlogDetails from "@/components/modules/blog/BlogDetails";
 import { getSingleBlog } from "@/services/blog";
 import { IBlog } from "@/types/blog";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 
-const UpdateBlog = () => {
+const DetailsBlog = () => {
     const { id } = useParams();
     const [data, setData] = useState<IBlog>({} as IBlog);
     useEffect(() => {
@@ -19,9 +19,9 @@ const UpdateBlog = () => {
 
     return (
         <div>
-            <EditBlogForm blog={data} />
+            <BlogDetails blog={data} />
         </div>
     );
 };
 
-export default UpdateBlog;
+export default DetailsBlog;

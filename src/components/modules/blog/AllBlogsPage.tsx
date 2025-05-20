@@ -58,13 +58,27 @@ const AllBlogsPage = ({ data }: IAllBlogs) => {
                     {
                         data?.map((blog: IBlog, idx) => (<TableRow className="bg-gray-50" key={idx}>
                             <TableCell className="font-medium">
-                                <Image className="border" src={blog.images[0]} width={100} height={80} alt="image" />
+                                {blog.images && blog.images.length > 0 && blog.images[0] ? (
+                                    <Image
+                                        className="border"
+                                        src={blog.images[0]}
+                                        width={100}
+                                        height={80}
+                                        alt="image"
+                                    />
+                                ) : (
+                                    <div className="w-[100px] h-[80px] flex items-center justify-center bg-gray-200 text-gray-500 border rounded">
+                                        No Image
+                                    </div>
+                                )}
                             </TableCell>
                             <TableCell>{blog.title}</TableCell>
                             <TableCell className="">
-                                <Button size="sm" variant="outline" className="bg-purple-500 text-white h-8 w-8 p-0">
-                                    <Eye className="h-4 w-4" />
-                                </Button>
+                                <Link href={`/dashboard/all-blogs/details/${blog._id}`}>
+                                    <Button size="sm" variant="outline" className="bg-purple-500 text-white h-8 w-8 p-0">
+                                        <Eye className="h-4 w-4" />
+                                    </Button>
+                                </Link>
                             </TableCell>
                             <TableCell className="">
                                 <Link href={`/dashboard/all-blogs/update/${blog._id}`}>
