@@ -74,9 +74,11 @@ const AllProjectsPage = ({ data }: IAllProjects) => {
                             </TableCell>
                             <TableCell>{project.title}</TableCell>
                             <TableCell className="">
-                                <Button size="sm" variant="outline" className="bg-purple-500 text-white h-8 w-8 p-0">
-                                    <Eye className="h-4 w-4" />
-                                </Button>
+                                <Link href={`/dashboard/all-projects/details/${project._id}`}>
+                                    <Button size="sm" variant="outline" className="bg-purple-500 text-white h-8 w-8 p-0">
+                                        <Eye className="h-4 w-4" />
+                                    </Button>
+                                </Link>
                             </TableCell>
                             <TableCell className="">
                                 <Link href={`/dashboard/all-projects/update/${project._id}`}>
