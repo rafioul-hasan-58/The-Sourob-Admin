@@ -1,43 +1,56 @@
 import { IBlog } from "@/types/blog";
 import Image from "next/image";
-
+import { format } from 'date-fns'
+import { useEffect, useState } from "react";
 interface DetailsBlog {
     blog: IBlog
 }
 const BlogDetails = ({ blog }: DetailsBlog) => {
-    console.log(blog);
+    const fallbackImage = 'https://i.ibb.co/mryzXPbL/office-605503-1280.jpg';
+    const [currentImg, setCurrentImg] = useState(blog?.images && blog.images[0]);
+
+    useEffect(() => {
+        if (blog?.images?.length > 0) {
+            setCurrentImg(blog.images[0]);
+        } else {
+            setCurrentImg(fallbackImage)
+        }
+    }, [blog?.images])
     return (
         <div className="m-8 max-w-screen overflow-hidden bg-purple-100 dark:bg-gray-800">
-            {blog?.images && blog?.images.length > 0 && blog?.images[1] ? (
-                <Image
-                    className=""
-                    src={blog?.images[0]}
-                    width={600}
-                    height={300}
-                    alt="image"
-                />
-            ) : (
-                <div className="w-[100px] h-[80px] flex items-center justify-center bg-gray-200 text-gray-500 border rounded">
-                    No Image
+            <div className="flex">
+                {currentImg ? (
+                    <Image
+                        className=" w-full h-[450px] p-4.5"
+                        src={currentImg}
+                        width={600}
+                        height={300}
+                        alt="image"
+                    />
+                ) : (
+                    <div className="w-[100px] h-[80px] flex items-center justify-center bg-gray-200 text-gray-500 border rounded">
+                        No Image
+                    </div>
+                )}
+                <div className="grid grid-cols-1 pt-4.5 my-0.5">
+                    {
+                        blog?.images?.length > 0 && blog.images.slice(0).map((img, idx) => (<Image key={idx} src={img} alt={img + idx} width={250} height={200} onClick={() => setCurrentImg(img)} className={`${currentImg === img ? 'border-2 border-purple-500' : ''}`} />))
+                    }
                 </div>
-            )}
-
+            </div>
             <div className="p-6">
                 <div>
                     <span className="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">
-                        Product
+                        Blog
                     </span>
                     <a
                         href="#"
                         className="block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform dark:text-white hover:text-gray-600 hover:underline"
                     >
-                        I Built A Successful Blog In One Year
+                        {blog.title}
                     </a>
                     <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Molestie
-                        parturient et sem ipsum volutpat vel. Natoque sem et aliquam mauris
-                        egestas quam volutpat viverra. In pretium nec senectus erat. Et
-                        malesuada lobortis.
+                        {blog.description}
                     </p>
                 </div>
 
@@ -45,20 +58,15 @@ const BlogDetails = ({ blog }: DetailsBlog) => {
                     <div className="flex items-center">
                         <Image
                             className="object-cover h-10 rounded-full"
-                            src="https://images.unsplash.com/photo-1586287011575-a23134f797f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=48&q=60"
+                            src="https://i.ibb.co/1JPrQPQh/portfolio.jpg"
                             alt="Avatar"
                             width={40}
                             height={50}
                         />
-                        <a
-                            href="#"
-                            className="mx-2 font-semibold text-gray-700 dark:text-gray-200"
-                        >
-                            Jone Doe
-                        </a>
-                        <span className="mx-1 text-xs text-gray-600 dark:text-gray-300">
-                            21 SEP 2015
-                        </span>
+                        <div className="text-left">
+                            <h1 className="mx-2 font-semibold text-gray-700">Rafioul Hasan</h1>
+                            <p className="mx-1 text-xs text-gray-600 ml-2">{blog?.createdAt && format(new Date(blog.createdAt), 'dd, MMM, yyyy')}</p>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -111,7 +111,6 @@ const WriteBlogForm = () => {
                                         name="images"
                                         multiple={true}
                                         onImageUpload={setImageUrls}
-                                        required
                                     />
                                 </div>
                             </div>

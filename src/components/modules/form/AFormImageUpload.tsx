@@ -43,8 +43,8 @@ const AFormImageUpload = ({
         const files = e.target.files;
         if (!files) return;
 
-        if (multiple && selectedFiles?.length + files?.length > 5) {
-            toast.warning("You can only upload a maximum of 5 images.");
+        if (multiple && selectedFiles?.length + files?.length > 3) {
+            toast.warning("You can only upload a maximum of 3 images.");
             return;
         }
 
