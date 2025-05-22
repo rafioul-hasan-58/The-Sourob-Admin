@@ -1,10 +1,10 @@
 
-const Layout = () => {
+const Dashboard = () => {
     return (
         <div>
-            <h1 className="text-white">Layout</h1>
+            <h1>Dashboard</h1>
         </div>
     );
 };
 
-export default Layout;
+export default Dashboard;

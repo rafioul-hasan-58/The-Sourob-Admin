@@ -57,7 +57,7 @@ const DashboardSidebar = () => {
     const items = [
         {
             title: "Messages",
-            url: "/dashboard/messages",
+            url: "/",
             icon: MessageSquareCode,
         },
         {

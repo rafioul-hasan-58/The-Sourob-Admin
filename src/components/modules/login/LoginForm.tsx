@@ -32,7 +32,7 @@ const LoginForm = () => {
             console.log(res);
             if (res.success) {
                 toast.success('Admin logged in');
-                router.push('/dashboard/messages')
+                router.push('/')
             } else {
                 toast.error(res.message);
             }
